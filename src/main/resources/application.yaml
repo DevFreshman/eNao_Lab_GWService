@@ -1,0 +1,77 @@
+spring:
+  application:
+    name: GWService
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          routes:
+            - id: auth-service
+              uri: http://auth-service:8080
+              predicates:
+                - Path=/auth/**
+              filters:
+                - name : CircuitBreaker
+                  args:
+                    name: authCircuitBreaker
+                    fallbackUri: forward:/fallback/auth
+                    statusCodes:
+                      - 500
+                      - 502
+                      - 503
+                      - 504
+                - StripPrefix=1
+            - id: user-service
+              uri: http://user-service:8080
+              predicates:
+                - Path=/user/**
+              filters:
+                - name : CircuitBreaker
+                  args:
+                    name: userCircuitBreaker
+                    fallbackUri: forward:/fallback/user
+                    statusCodes:
+                      - 500
+                      - 502
+                      - 503
+                      - 504
+                - StripPrefix=1
+            - id: lab-service
+              uri: http://lab-service:8080
+              predicates:
+                - Path=/lab/**
+              filters:
+                - name : CircuitBreaker
+                  args:
+                    name: labCircuitBreaker
+                    fallbackUri: forward:/fallback/lab
+                    statusCodes:
+                      - 500
+                      - 502
+                      - 503
+                      - 504
+                - StripPrefix=1
+resilience4j:
+  circuitbreaker:
+    instances:
+        authCircuitBreaker:
+            registerHealthIndicator: true
+            slidingWindowSize: 10
+            minimumNumberOfCalls: 5
+            permittedNumberOfCallsInHalfOpenState: 3
+            waitDurationInOpenState: 10s
+            failureRateThreshold: 50
+        userCircuitBreaker:
+            registerHealthIndicator: true
+            slidingWindowSize: 10
+            minimumNumberOfCalls: 5
+            permittedNumberOfCallsInHalfOpenState: 3
+            waitDurationInOpenState: 10s
+            failureRateThreshold: 50
+        labCircuitBreaker:
+            registerHealthIndicator: true
+            slidingWindowSize: 10
+            minimumNumberOfCalls: 5
+            permittedNumberOfCallsInHalfOpenState: 3
+            waitDurationInOpenState: 10s
+            failureRateThreshold: 50
