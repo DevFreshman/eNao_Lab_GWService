@@ -13,7 +13,7 @@ spring:
               filters:
                 - name : CircuitBreaker
                   args:
-                    name: authCircuitBreaker
+                    id: authCircuitBreaker
                     fallbackUri: forward:/fallback/auth
                     statusCodes:
                       - 500
@@ -28,7 +28,7 @@ spring:
               filters:
                 - name : CircuitBreaker
                   args:
-                    name: userCircuitBreaker
+                    id: userCircuitBreaker
                     fallbackUri: forward:/fallback/user
                     statusCodes:
                       - 500
@@ -43,7 +43,7 @@ spring:
               filters:
                 - name : CircuitBreaker
                   args:
-                    name: labCircuitBreaker
+                    id: labCircuitBreaker
                     fallbackUri: forward:/fallback/lab
                     statusCodes:
                       - 500
