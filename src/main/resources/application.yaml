@@ -7,7 +7,7 @@ spring:
         webmvc:
           routes:
             - id: auth-service
-              uri: http://auth-service:8080
+              uri: http://authservice-lab:8080
               predicates:
                 - Path=/auth/**
               filters:
@@ -22,7 +22,7 @@ spring:
                       - 504
                 - StripPrefix=1
             - id: user-service
-              uri: http://user-service:8080
+              uri: http://userservice-lab:8080
               predicates:
                 - Path=/user/**
               filters:
@@ -37,7 +37,7 @@ spring:
                       - 504
                 - StripPrefix=1
             - id: lab-service
-              uri: http://lab-service:8080
+              uri: http://labservice-lab:8080
               predicates:
                 - Path=/lab/**
               filters:
