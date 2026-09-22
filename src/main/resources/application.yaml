@@ -55,21 +55,21 @@ resilience4j:
   circuitbreaker:
     instances:
         authCircuitBreaker:
-            registerHealthIndicator: true
+            registerHealthIndicator: false
             slidingWindowSize: 10
             minimumNumberOfCalls: 5
             permittedNumberOfCallsInHalfOpenState: 3
             waitDurationInOpenState: 10s
             failureRateThreshold: 50
         userCircuitBreaker:
-            registerHealthIndicator: true
+            registerHealthIndicator: false
             slidingWindowSize: 10
             minimumNumberOfCalls: 5
             permittedNumberOfCallsInHalfOpenState: 3
             waitDurationInOpenState: 10s
             failureRateThreshold: 50
         labCircuitBreaker:
-            registerHealthIndicator: true
+            registerHealthIndicator: false
             slidingWindowSize: 10
             minimumNumberOfCalls: 5
             permittedNumberOfCallsInHalfOpenState: 3

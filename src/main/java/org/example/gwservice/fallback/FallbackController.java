@@ -1,4 +1,4 @@
-package fallback;
+package org.example.gwservice.fallback;
 
 import org.example.javaframework.web.api.Response;
 import org.springframework.http.HttpStatus;
