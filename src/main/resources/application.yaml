@@ -52,6 +52,14 @@ spring:
                       - 504
                 - StripPrefix=1
 resilience4j:
+  timelimiter:
+    instances:
+      authTimeLimiter:
+        timeoutDuration: 10s
+      userTimeLimiter:
+        timeoutDuration: 10s
+      labTimeLimiter:
+        timeoutDuration: 10s
   circuitbreaker:
     instances:
         authCircuitBreaker:
